@@ -1,40 +1,23 @@
-# coisas a serem feitas:
+# Android Challenge
 
-- colocar para pesquisar depois de digitar e esperar X segundos
-- depois que clicar na série, verificar se ela tem os seguintes campos:
+## Preview
 
-  - nome
-  - poster
-  - dias e horários que as séries vão ao ar
-  - generos
-  - resumo
-  - lista de episodios separados por temporada
-  - permitir adicionar um serie aos favoritos
-  - criar uma listagem de pessaoas
-    - quando clicar, mostrar mais detalhes da pessoa escolhida
-      - nome
-      - image
-      - series que a pessoa participou
+![Android Challenge](/assets/banner-git.png)
 
-- quando clicar em um episodio, mostrar as informacoes do episodio
+### **Clone**
 
-  - nome
-  - numero do episodio
-  - temporada
-  - resumo
-  - image, se tiver uma (realizar um tratamento para quando nao tiver)
+In your command line:
 
-- adicionar bottom tab bar com tela de home e de favoritos
-- favoritos
-  - listar favoritos em ordem alfabetica
-  - permitir clicar no favorito e ver mais informacoes
-  - permitir remover serie dos favoritos
+```bash
+# Clone project
+$ git clone https://github.com/rafabarbosa/jobsity-android-challenge.git
 
-## extra
+# Go into folder
+$ cd jobsity-android-challenge
 
-- adicionar um lazy loading nas imagens, porque algumas sao pesadas demais para realizar o carregamento
+# Install dependencies
+$ yarn install
 
-### local authentication
-
-- permitir a pessoa criar um pin, para bloquear o acesso de outras pessoas ao app
-- permitir realizar o login usando biometria, caso a pessoa nao queira digitar a senha
+# Run the app
+$ expo start
+```
