@@ -1,0 +1,34 @@
+import React from "react";
+import { ListRenderItemInfo } from "react-native";
+import ShowCard from "../../components/ShowCard";
+import SearchInput from "../../components/SearchInput";
+import { useGlobalContext } from "../../contexts/GlobalContext";
+import { ShowsProps, ShowsState } from "../../interfaces/IShows";
+import * as S from "./style";
+
+export default function ShowsScreen({ navigation }: ShowsProps): JSX.Element {
+  const { shows } = useGlobalContext();
+
+  function navigateToDetail(id: number) {
+    navigation.navigate("ShowDetails", { id });
+  }
+
+  return (
+    <S.Container>
+      <SearchInput />
+      <S.FlatList
+        key={"#"}
+        data={shows}
+        numColumns={3}
+        keyExtractor={(item: ShowsState) => item.id.toString()}
+        renderItem={({ item }: ListRenderItemInfo<ShowsState>) => (
+          <ShowCard
+            title={item?.name}
+            image={item?.image?.medium}
+            onClick={() => navigateToDetail(item?.id)}
+          />
+        )}
+      />
+    </S.Container>
+  );
+}
