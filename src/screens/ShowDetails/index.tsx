@@ -10,17 +10,31 @@ import {
 } from "../../services/tvmaze";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
+import { SeasonState } from "../../interfaces/ISeasons";
+import { EpisodeState } from "../../interfaces/IEpisodes";
 import * as S from "./style";
+import { ShowsState } from "../../interfaces/IShows";
 
 export default function ShowDetailsScreen({
   route,
   navigation,
 }: ShowDetailsProps) {
   const showId = route.params.id;
-  const [details, setDetails] = useState<any | null>(null);
-  const [seasons, setSeasons] = useState<any[]>([]);
+  const [details, setDetails] = useState({} as ShowsState);
+  const [seasons, setSeasons] = useState([] as Array<SeasonState>);
 
   const { addFavorite, removeFavorite, hasFavorite } = useFavoritesContext();
+
+  async function handleEpisodes(season: SeasonState) {
+    const episodes = await getEpisodesBySeason(season.id);
+    return episodes.map((episode: EpisodeState) => ({
+      id: episode.id,
+      name: episode.name,
+      image: episode.image?.medium,
+      average: episode.rating?.average,
+      summary: episode.summary,
+    }));
+  }
 
   useEffect(() => {
     (async () => {
@@ -28,19 +42,14 @@ export default function ShowDetailsScreen({
       setDetails(fetchDetails);
 
       const fetchSeasons = await getSeasons(showId);
-      const seasonsWithEpisodes = fetchSeasons.map(async (season) => {
-        const episodes = await getEpisodesBySeason(season.id);
-        return {
-          number: season.number,
-          episodes: episodes.map((episode) => ({
-            id: episode.id,
-            name: episode.name,
-            image: episode.image?.medium,
-            average: episode.rating?.average,
-            summary: episode.summary,
-          })),
-        };
-      });
+      const seasonsWithEpisodes = fetchSeasons.map(
+        async (season: SeasonState) => {
+          return {
+            number: season.number,
+            episodes: await handleEpisodes(season),
+          };
+        }
+      );
 
       const response = await Promise.all(seasonsWithEpisodes);
       setSeasons(response);

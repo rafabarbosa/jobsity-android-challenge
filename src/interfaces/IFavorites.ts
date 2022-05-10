@@ -1,25 +1,20 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./RootStackParamList";
 
-type ShowsNavigationProps = NativeStackNavigationProp<
+type FavoritesNavigationProps = NativeStackNavigationProp<
   RootStackParamList,
-  "Shows"
+  "Favorites"
 >;
 
-export type ShowsProps = {
-  navigation: ShowsNavigationProps;
+export type FavoritesProps = {
+  navigation: FavoritesNavigationProps;
 };
 
-export type ShowsState = {
+export type FavoritesState = {
   id: number;
   name: string;
   image: {
     medium: string;
     original: string;
   };
-  genres?: Array<string>;
-  rating?: {
-    average?: number;
-  };
-  summary?: string;
 };

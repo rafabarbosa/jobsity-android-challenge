@@ -16,7 +16,7 @@ type ContextProps = {
   favorites: Array<any>;
   addFavorite: (show: ShowsState) => void;
   removeFavorite: (show: ShowsState) => void;
-  hasFavorite: (show: ShowsState) => boolean;
+  hasFavorite: (show: ShowsState) => boolean | undefined;
 };
 
 const FavoritesContext = createContext({} as ContextProps);
@@ -27,9 +27,9 @@ export function FavoritesProvider({ children }: ProviderProps) {
 
   useEffect(() => {
     (async () => {
-      const items = await getItem();
-      const itemsParsed = JSON.parse(items);
-      if (itemsParsed) {
+      const storageData = await getItem();
+      if (storageData) {
+        const itemsParsed = JSON.parse(storageData);
         setFavorites(itemsParsed);
       } else {
         setFavorites([]);
@@ -53,7 +53,7 @@ export function FavoritesProvider({ children }: ProviderProps) {
     );
   }, []);
 
-  const hasFavorite = (show: ShowsState) => {
+  const hasFavorite = (show?: ShowsState) => {
     if (show) {
       const finded = favorites.filter((favorite) => favorite.id === show.id);
       if (finded.length > 0) {

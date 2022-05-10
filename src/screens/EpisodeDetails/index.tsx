@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import RatingBar from "../../components/RatingBar";
-import { ShowDetailsProps } from "../../interfaces/IShowDetails";
 import { getEpisodeById } from "../../services/tvmaze";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { addZero, removeHtmlTags } from "../../utils/helpers";
+import { EpisodeDetailsProps } from "../../interfaces/IEpisodes";
 import * as S from "./style";
 
 export default function EpisodeDetailsScreen({
   route,
   navigation,
-}: ShowDetailsProps) {
+}: EpisodeDetailsProps) {
   const episodeId = route.params.id;
   const [details, setDetails] = useState<any | null>(null);
 

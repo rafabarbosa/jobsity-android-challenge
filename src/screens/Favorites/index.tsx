@@ -1,18 +1,18 @@
 import React from "react";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
 import { removeHtmlTags } from "../../utils/helpers";
-import { EpisodesProps } from "../../interfaces/IEpisodes";
+import { FavoritesProps } from "../../interfaces/IFavorites";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import * as S from "./style";
 
-export default function FavoritesScreen({ navigation }: EpisodesProps) {
+export default function FavoritesScreen({ navigation }: FavoritesProps) {
   const { favorites, removeFavorite } = useFavoritesContext();
 
   function handleGoBack() {
     navigation.goBack();
   }
 
-  function navigateToShow(id) {
+  function navigateToShow(id: number) {
     navigation.navigate("ShowDetails", { id });
   }
 

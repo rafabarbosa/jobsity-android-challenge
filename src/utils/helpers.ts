@@ -5,6 +5,6 @@ export function addZero(num: number) {
   return "??";
 }
 
-export function removeHtmlTags(text: string) {
+export function removeHtmlTags(text?: string) {
   return text?.replace(/(<([^>]+)>)/gi, "");
 }

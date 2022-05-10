@@ -1,5 +1,5 @@
 import React from "react";
-import { ListRenderItemInfo } from "react-native";
+import { FlatList, ListRenderItemInfo } from "react-native";
 import ShowCard from "../../components/ShowCard";
 import SearchInput from "../../components/SearchInput";
 import { useGlobalContext } from "../../contexts/GlobalContext";
@@ -16,7 +16,7 @@ export default function ShowsScreen({ navigation }: ShowsProps): JSX.Element {
   return (
     <S.Container>
       <SearchInput />
-      <S.FlatList
+      <FlatList
         key={"#"}
         data={shows}
         numColumns={3}
@@ -28,6 +28,10 @@ export default function ShowsScreen({ navigation }: ShowsProps): JSX.Element {
             onClick={() => navigateToDetail(item?.id)}
           />
         )}
+        style={{ width: "100%" }}
+        contentContainerStyle={{
+          paddingVertical: 15,
+        }}
       />
     </S.Container>
   );
