@@ -1,4 +1,4 @@
-# Android Challenge
+# **Android Challenge**
 
 ## Preview
 
@@ -21,3 +21,7 @@ $ yarn install
 # Run the app
 $ expo start
 ```
+
+### **Distribution**
+
+Inside the distribution folder there is an .apk, in case you want to install it on your cell phone and check how it works.
